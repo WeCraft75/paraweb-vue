@@ -5,13 +5,6 @@ import Sitelist from "./components/Sitelist.vue";
 import MapContainer from "./components/MapContainer.vue";
 </script>
 
-<style>
-@font-face {
-  font-family: KronaOne;
-  src: url(./assets/KronaOne-Regular.ttf) format("truetype");
-}
-</style>
-
 <template>
   <LogoContainer />
   <SearchBar />
@@ -20,3 +13,5 @@ import MapContainer from "./components/MapContainer.vue";
 </template>
 
 <style scoped></style>
+
+<script></script>

@@ -1,5 +1,5 @@
 <template>
-  <input type="text" name="filter" />
+  <input type="text" name="filter" placeholder="Iščite po vzletiščih" />
 </template>
 
 <style scoped>
@@ -12,6 +12,12 @@ input {
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5em;
-  background-color: ();
+}
+
+@media (prefers-color-scheme: dark) {
+  input {
+    background-color: var(--vt-c-black);
+    color: var(--vt-c-text-dark-2);
+  }
 }
 </style>

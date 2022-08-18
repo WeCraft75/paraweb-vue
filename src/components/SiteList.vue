@@ -1,7 +1,5 @@
 <template>
-  <v-container>
-    
-  </v-container>
+  <li id="sitelist"></li>
 </template>
 
 <style scoped>
