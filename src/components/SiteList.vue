@@ -1,9 +1,15 @@
+<script setup>
+import SiteListItem from "./SiteListItem.vue";
+</script>
+
 <template>
-  <li id="sitelist"></li>
+  <div id="sitelist">
+    <SiteListItem />
+  </div>
 </template>
 
 <style scoped>
-li {
+#sitelist {
   overflow-y: scroll;
 }
 </style>

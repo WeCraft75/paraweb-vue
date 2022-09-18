@@ -5,7 +5,6 @@
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  gap: 5px 0px;
 }
 
 a,
@@ -15,6 +14,28 @@ a,
   transition: 0.4s;
 }
 
+
+/* Feather icon styling */
+.weathericon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  float: right;
+}
+
+/* Leaflet styling */
+.leaflet-popup-content {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.15em;
+}
+
+.popupheader {
+  text-align: center;
+  font-size: 1.2em;
+  height: 1.22em;
+}
+
+/* Dynamic CSS */
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

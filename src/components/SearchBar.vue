@@ -11,7 +11,7 @@ input {
   padding: 10px;
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 @media (prefers-color-scheme: dark) {

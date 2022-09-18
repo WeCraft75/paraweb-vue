@@ -7,10 +7,11 @@
   font-family: KronaOne;
   src: url(../assets/KronaOne-Regular.ttf) format("truetype");
 }
+
 h1 {
   font-family: KronaOne, Arial, Helvetica, sans-serif;
   text-align: center;
-  font-size: 2em;
+  font-size: 2.2em;
   user-select: none;
 }
 </style>
