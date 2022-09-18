@@ -15,12 +15,7 @@ function addPoints() {
     // check if the jumppoint data contains all the info required to display in the popup
     if (Object.keys(singlepoint).length > 2) {
       // add info to popup
-      var slovenianWindDir = singlepoint["windDirection"]
-        .replace("S", "J")
-        .replace("E", "V")
-        .replace("W", "Z")
-        .replace("N", "S");
-      text += `Veter piha v smeri ${slovenianWindDir} s hitrostjo ${singlepoint["windSpeed"]} m/s, ter sunki do ${singlepoint["windGust"]} m/s`;
+      text += `Veter piha v smeri ${singlepoint["windDirection"]} s hitrostjo ${singlepoint["windSpeed"]} m/s, ter sunki do ${singlepoint["windGust"]} m/s`;
       text += `<br/>Temperatura na vzletišču: ${singlepoint["temperature"]}°C`;
       text += `<br/>Trenutno vreme: ${singlepoint["detailedWeather"]}`;
     } else {
@@ -78,27 +73,22 @@ function searchElements(inputElement) {
   }
 }*/
 
-function getAllData() {
-  var jumpPointsFromAPI = {};
-
-  axios
-    .get("http://skytech.si")
-    .then((response) => {
-      store.jumpPointsList = JSON.parse(response.data);
+async function getAllData() {
+  await axios
+    .get(`http://${window.location.hostname}:30000/full`)
+    .then((resFromAPI) => {
+      store.jumpPointsList = resFromAPI.data;
+      console.log(resFromAPI.data);
+      if (Object.keys(resFromAPI.data).length == 0) {
+        // TODO: if response != 200, error
+        // there has been an error
+        alert("There was an error loading jump point data.");
+      }
     })
+    .then(addPoints)
     .catch((e) => {
       console.error(e);
     });
-  if (jumpPointsFromAPI != {}) {
-    store.jumpPointsList = jumpPointsFromAPI;
-  } else {
-    alert("There was an error loading jump point data.");
-  }
 }
 
-// use the above created functions to load data
 getAllData();
-console.log(store.jumpPointsList);
-// and use the data to display jumppoints
-//fillList();
-addPoints();

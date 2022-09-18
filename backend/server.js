@@ -9,7 +9,7 @@ const jssoup = require("jssoup").default;
 const axios = require("axios");
 
 const hostname = "localhost";
-const port = 3000;
+const port = 30000;
 
 const options = {
     method: "POST",
@@ -26,7 +26,8 @@ try {
 var sitelist = JSON.parse(fileContents);
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
     if (req.url == "/full") {
         axios.request(options).then(resSkytech => {
             var soup = new jssoup(resSkytech.data);
@@ -55,7 +56,7 @@ const server = http.createServer((req, res) => {
                         if (typeof temp == "object") {
                             temp["windSpeed"] = Number.parseFloat(data[0].substr(0, data[0].indexOf(" ")));
                             temp["windGust"] = Number.parseFloat(data[1].substr(0, data[1].indexOf(" ")));
-                            temp["windDir"] = data[2];
+                            temp["windDirection"] = data[2];
                             temp["temperature"] = Number.parseFloat(data[3].substr(0, data[3].indexOf("&deg")));
 
                             // date parsing
@@ -72,6 +73,7 @@ const server = http.createServer((req, res) => {
             }
 
             // return response here (because fucking async functions)
+            res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(sitelist));
         }).catch(error => {
             console.error(error);
@@ -85,18 +87,3 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
     console.log(`Server started on http://${hostname}:${port}`);
 });
-
-
-
-/* EXAMPLE JUMPPOINT
-"Ambrož pod Krvavcem": {
-    "lat": 46.2752,
-    "lon": 14.5279,
-
-    "windSpeed": 0.8,
-    "windGust": 1.6,
-    "windDirection": "SZ",
-    "temperature": 10.0,
-    "timeAndDate": "2022-09-18 17:18:00",
-  }
-*/
